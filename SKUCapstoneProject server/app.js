@@ -119,9 +119,9 @@ app.use('/stream', (req, res, next) => {
 // CRON JOBS
 // =========================================================
 
-setInterval(() => {
-  temhuController.saveBufferToDB();
-}, 30000);
+//setInterval(() => {
+//  temhuController.saveBufferToDB();
+//}, 30000);
 
 cron.schedule('*/10 * * * *', () => {
   console.log('⏰ [10분] 수면 점수 계산');
