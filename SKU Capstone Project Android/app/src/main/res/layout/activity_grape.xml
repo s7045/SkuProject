@@ -1,205 +1,384 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7F9FC"
-    android:fillViewport="true">
+    android:background="#F7F9FF">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/sleepScrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="104dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp">
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingTop="14dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="28dp">
 
-            <ImageButton
-                android:id="@+id/btn_back"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentStart="true"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="뒤로가기"
-                android:padding="8dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/outline_arrow_back_24"
-                app:tint="#2D3436" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="실시간 수면 분석"
-                android:textColor="#2D3436"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="2dp">
-
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/sleepHeader"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="24dp">
+                android:layout_height="44dp">
+
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="뒤로가기"
+                    android:padding="7dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/outline_arrow_back_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="#4B626A" />
+
+                <TextView
+                    android:id="@+id/tvSleepHeaderTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false"
+                    android:text="첫걸음"
+                    android:textColor="#4B626A"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/btn_back"
+                    app:layout_constraintStart_toEndOf="@id/btn_back"
+                    app:layout_constraintTop_toTopOf="@id/btn_back" />
+
+                <ImageView
+                    android:id="@+id/ivSleepProfile"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/bg_home_profile_circle"
+                    android:contentDescription="프로필"
+                    android:padding="5dp"
+                    android:src="@drawable/human"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardSleepScore"
+                android:layout_width="match_parent"
+                android:layout_height="342dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/bg_sleep_main_card"
+                android:paddingStart="24dp"
+                android:paddingTop="28dp"
+                android:paddingEnd="24dp"
+                android:paddingBottom="28dp">
 
                 <TextView
                     android:id="@+id/tv_status_msg"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#E1F5FE"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="4dp"
-                    android:text="데이터 분석 중..."
-                    android:textColor="#0D47A1"
+                    android:layout_height="34dp"
+                    android:background="@drawable/bg_sleep_status_pill"
+                    android:gravity="center"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:text="☻  수면 환경이 아주 좋아요! 😊"
+                    android:textColor="#4B626A"
                     android:textSize="13sp"
-                    android:textStyle="bold" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <FrameLayout
+                    android:id="@+id/sleepScoreRing"
+                    android:layout_width="172dp"
+                    android:layout_height="172dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_sleep_score_ring"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_status_msg">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_sleep_score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:includeFontPadding="false"
+                            android:text="95"
+                            android:textColor="#4B626A"
+                            android:textSize="58sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-2dp"
+                            android:text="점수"
+                            android:textColor="#181C20"
+                            android:textSize="17sp" />
+                    </LinearLayout>
+                </FrameLayout>
 
                 <TextView
-                    android:id="@+id/tv_sleep_score"
+                    android:id="@+id/tvSleepScoreDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="22dp"
+                    android:gravity="center"
+                    android:lineSpacingExtra="3dp"
+                    android:text="아기의 지난 수면 세션을 바탕으로\n분석한 종합 수면 효율 점수입니다."
+                    android:textColor="#42484A"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/sleepScoreRing" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:id="@+id/metricCards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/cardTemperatureMetric"
+                    style="@style/SleepMetricCardStyle"
+                    android:background="@drawable/bg_sleep_metric_card_temp">
+
+                    <TextView style="@style/SleepMetricIconStyle" android:text="♨" />
+                    <LinearLayout style="@style/SleepMetricTextGroupStyle">
+                        <TextView style="@style/SleepMetricLabelStyle" android:text="온도" />
+                        <TextView android:id="@+id/tv_current_temp" style="@style/SleepMetricValueStyle" android:text="23.5°C" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cardHumidityMetric"
+                    style="@style/SleepMetricCardStyle"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_sleep_metric_card_humidity">
+
+                    <TextView style="@style/SleepMetricIconStyle" android:text="♧" />
+                    <LinearLayout style="@style/SleepMetricTextGroupStyle">
+                        <TextView style="@style/SleepMetricLabelStyle" android:text="습도" />
+                        <TextView android:id="@+id/tv_humidity" style="@style/SleepMetricValueStyle" android:text="53%" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cardNoiseMetric"
+                    style="@style/SleepMetricCardStyle"
+                    android:layout_marginTop="14dp"
+                    android:background="@drawable/bg_sleep_metric_card_noise">
+
+                    <TextView style="@style/SleepMetricIconStyle" android:text="◉" />
+                    <LinearLayout style="@style/SleepMetricTextGroupStyle">
+                        <TextView style="@style/SleepMetricLabelStyle" android:text="소음" />
+                        <TextView android:id="@+id/tv_noise" style="@style/SleepMetricValueStyle" android:text="40 dB" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardSleepTrend"
+                android:layout_width="match_parent"
+                android:layout_height="302dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_sleep_main_card"
+                android:padding="28dp">
+
+                <TextView
+                    android:id="@+id/tvTrendTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="수면 점수 추이"
+                    android:textColor="#184C5A"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/trendToggleGroup"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/trendToggleGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:layout_width="44dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/bg_sleep_toggle_unselected"
+                        android:gravity="center"
+                        android:text="일간"
+                        android:textColor="#72787A"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="44dp"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@drawable/bg_sleep_toggle_selected"
+                        android:gravity="center"
+                        android:text="주간"
+                        android:textColor="#FFFFFF"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <FrameLayout
+                    android:id="@+id/chartShell"
+                    android:layout_width="0dp"
+                    android:layout_height="184dp"
+                    android:layout_marginTop="28dp"
+                    android:background="@drawable/bg_sleep_chart_placeholder"
+                    android:padding="14dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTrendTitle">
+
+                    <com.github.mikephil.charting.charts.LineChart
+                        android:id="@+id/sleep_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </FrameLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardSleepInsight"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/bg_sleep_insight_card"
+                android:paddingStart="36dp"
+                android:paddingTop="34dp"
+                android:paddingEnd="36dp"
+                android:paddingBottom="28dp">
+
+                <TextView
+                    android:id="@+id/tvInsightIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="◔⁺"
+                    android:textColor="#4B626A"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvInsightTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:text="--"
-                    android:textColor="#2D3436"
-                    android:textSize="56sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="sans-serif-medium"
+                    android:text="수면 인사이트"
+                    android:textColor="#184C5A"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvInsightIcon" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="종합 수면 효율 점수"
-                    android:textColor="#4A5568"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="20dp"
-                android:baselineAligned="false">
-
-                <LinearLayout
+                    android:id="@+id/tvInsightBody"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="온도"
-                        android:textColor="#2D3748"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:id="@+id/tv_current_temp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0.0°C"
-                        android:textColor="#2D3436"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <View android:layout_width="1dp" android:layout_height="24dp" android:layout_gravity="center" android:background="#EDF2F7"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="습도"
-                        android:textColor="#2D3748"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:id="@+id/tv_humidity"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0%"
-                        android:textColor="#2D3436"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <View android:layout_width="1dp" android:layout_height="24dp" android:layout_gravity="center" android:background="#EDF2F7"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="소음"
-                        android:textColor="#2D3748"
-                        android:textSize="12sp" />
-                    <TextView
-                        android:id="@+id/tv_noise"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0 dB"
-                        android:textColor="#2D3436"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:cardBackgroundColor="#FFFFFF"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="2dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
+                    android:layout_marginTop="14dp"
+                    android:lineSpacingExtra="4dp"
+                    android:text="실내 온도를 23°C에서 24°C로 부드럽게 조절하면 아기가 잠드는 속도가 15% 더 빨라질 수 있습니다."
+                    android:textColor="#184C5A"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvInsightTitle" />
 
                 <TextView
+                    android:id="@+id/btnGuideRead"
+                    android:layout_width="96dp"
+                    android:layout_height="34dp"
+                    android:background="@drawable/bg_sleep_guide_button"
+                    android:gravity="center"
+                    android:text="가이드 읽기"
+                    android:textColor="#4B626A"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardSleepLive"
+                android:layout_width="match_parent"
+                android:layout_height="178dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_sleep_live_card"
+                android:paddingStart="34dp"
+                android:paddingBottom="28dp"
+                android:paddingEnd="28dp">
+
+                <TextView
+                    android:id="@+id/tvLiveTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:text="수면 점수 변화 추이"
-                    android:textColor="#2D3436"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="sans-serif-medium"
+                    android:text="아기방 실시간 보기"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/tvLiveSubtitle"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-                <com.github.mikephil.charting.charts.LineChart
-                    android:id="@+id/sleep_chart"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/tvLiveSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="라이브 스트리밍 이용 가능"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvLiveTitle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/sleepBottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:background="@drawable/bg_home_bottom_nav"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView style="@style/SleepBottomNavItemStyle" android:text="⌂\n홈" />
+        <TextView style="@style/SleepBottomNavSelectedStyle" android:text="☾\n수면" />
+        <TextView style="@style/SleepBottomNavItemStyle" android:text="▣\n일정" />
+        <TextView style="@style/SleepBottomNavItemStyle" android:text="⌾\n안내" />
     </LinearLayout>
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
