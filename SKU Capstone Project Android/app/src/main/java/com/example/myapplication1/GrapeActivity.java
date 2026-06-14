@@ -67,6 +67,8 @@ public class GrapeActivity extends AppCompatActivity {
     private void initViews() {
 
         sleepChart = findViewById(R.id.sleep_chart);
+        sleepChart.setNoDataText("아직 차트 데이터가 없습니다.\n오늘 밤 수면 세션이 끝나면 첫 번째 추이 데이터를 확인할 수 있습니다.");
+        sleepChart.setNoDataTextColor(Color.parseColor("#72787A"));
 
         tvSleepScore = findViewById(R.id.tv_sleep_score);
         tvStatusMsg = findViewById(R.id.tv_status_msg);
@@ -125,7 +127,7 @@ public class GrapeActivity extends AppCompatActivity {
 
                             tvSleepScore.setText(
                                     data.sleepScore != null
-                                            ? Math.round(data.sleepScore) + "점"
+                                            ? String.valueOf(Math.round(data.sleepScore))
                                             : "--"
                             );
 
@@ -144,11 +146,11 @@ public class GrapeActivity extends AppCompatActivity {
                             }
 
                             if (data.sleepScore != null && data.sleepScore >= 80) {
-                                tvStatusMsg.setText("수면 환경이 매우 좋아요 😴");
+                                tvStatusMsg.setText("☻  수면 환경이 아주 좋아요! 😊");
                             } else if (data.sleepScore != null && data.sleepScore >= 60) {
-                                tvStatusMsg.setText("수면 환경이 안정적이에요 🙂");
+                                tvStatusMsg.setText("☻  수면 환경이 안정적이에요 🙂");
                             } else {
-                                tvStatusMsg.setText("수면 환경 점검이 필요해요 ⚠️");
+                                tvStatusMsg.setText("☻  수면 환경 점검이 필요해요 ⚠️");
                             }
 
                         } else {
@@ -212,7 +214,7 @@ public class GrapeActivity extends AppCompatActivity {
 
         LineDataSet dataSet = new LineDataSet(entries, "수면 점수 변화");
 
-        int themeColor = Color.parseColor("#4A90E2");
+        int themeColor = Color.parseColor("#4B626A");
 
         dataSet.setColor(themeColor);
         dataSet.setCircleColor(themeColor);
@@ -229,6 +231,8 @@ public class GrapeActivity extends AppCompatActivity {
         xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
         xAxis.setGranularity(1f);
         xAxis.setLabelRotationAngle(-30);
+        xAxis.setTextColor(Color.parseColor("#72787A"));
+        sleepChart.getAxisLeft().setTextColor(Color.parseColor("#72787A"));
 
         sleepChart.getAxisRight().setEnabled(false);
         sleepChart.getDescription().setEnabled(false);

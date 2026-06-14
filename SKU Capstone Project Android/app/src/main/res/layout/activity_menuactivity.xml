@@ -5,129 +5,452 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FD">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="24dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Live Stream"
-            android:textColor="#1F2246"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/ivHeaderIcon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:padding="10dp"
-            android:src="@drawable/human"
-            android:clickable="true"
-            android:focusable="true"
-            android:importantForAccessibility="no"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintBottom_toBottomOf="@id/tvTitle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvTitle" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    android:background="#F7F9FF">
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/homeScrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:clipToPadding="false"
         android:fillViewport="true"
+        android:paddingBottom="116dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutHeader">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp"
-            android:paddingBottom="32dp">
+            android:paddingStart="20dp"
+            android:paddingTop="18dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="40dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardLiveStream"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutHeader"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="120dp"
-                android:layout_marginBottom="120dp"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp"
-                app:cardBackgroundColor="#F8F9FD">
+                android:layout_height="wrap_content">
 
-                <!-- vlc -->
-                <org.videolan.libvlc.util.VLCVideoLayout
-                    android:id="@+id/mainPreview"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:background="@android:color/black" />
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false"
+                    android:text="너처가이드"
+                    android:textColor="#4B626A"
+                    android:textSize="34sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/ivHeaderIcon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </androidx.cardview.widget.CardView>
+                <ImageView
+                    android:id="@+id/ivHeaderIcon"
+                    android:layout_width="58dp"
+                    android:layout_height="58dp"
+                    android:background="@drawable/bg_home_profile_circle"
+                    android:clickable="true"
+                    android:contentDescription="마이페이지"
+                    android:focusable="true"
+                    android:padding="13dp"
+                    android:src="@drawable/human"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvToday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="sans-serif"
+                    android:text="10월 24일 화요일"
+                    android:textColor="#181C20"
+                    android:textSize="17sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+                <TextView
+                    android:id="@+id/tvGreeting"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:includeFontPadding="false"
+                    android:text="좋은 아침이에요, 엄마 아빠!"
+                    android:textColor="#4B626A"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvToday" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <GridLayout
+                android:id="@+id/statusGrid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="72dp"
+                android:columnCount="2"
+                android:rowCount="1">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cardEnvironmentSummary"
+                    android:layout_width="0dp"
+                    android:layout_height="170dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/bg_home_status_card_light"
+                    android:paddingStart="26dp"
+                    android:paddingTop="30dp"
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="24dp">
+
+                    <ImageView
+                        android:id="@+id/ivTempIcon"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/environment"
+                        android:tint="#4B626A"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvRoomName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="아이방"
+                        android:textColor="#42484A"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/ivTempIcon" />
+
+                    <TextView
+                        android:id="@+id/tvTemperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:includeFontPadding="false"
+                        android:text="23.5°C"
+                        android:textColor="#181C20"
+                        android:textSize="35sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvRoomName" />
+
+                    <TextView
+                        android:id="@+id/tvHumidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="💧 습도 53%"
+                        android:textColor="#42484A"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvTemperature" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cardSleepSummary"
+                    android:layout_width="0dp"
+                    android:layout_height="170dp"
+                    android:layout_columnWeight="1"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_home_status_card_primary"
+                    android:paddingStart="26dp"
+                    android:paddingTop="30dp"
+                    android:paddingEnd="24dp"
+                    android:paddingBottom="24dp">
+
+                    <TextView
+                        android:id="@+id/tvMoonIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="☾"
+                        android:textColor="#4B626A"
+                        android:textSize="34sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvSleepScoreBadge"
+                        android:layout_width="64dp"
+                        android:layout_height="34dp"
+                        android:background="@drawable/bg_home_score_badge"
+                        android:gravity="center"
+                        android:text="95%"
+                        android:textColor="#4B626A"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvSleepLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp"
+                        android:text="최근 수면"
+                        android:textColor="#4B626A"
+                        android:textSize="20sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvMoonIcon" />
+
+                    <TextView
+                        android:id="@+id/tvSleepTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:includeFontPadding="false"
+                        android:text="8시간 20분"
+                        android:textColor="#4B626A"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvSleepLabel" />
+
+                    <TextView
+                        android:id="@+id/tvSleepStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="수면 점수: 아주 좋음"
+                        android:textColor="#4B626A"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvSleepTime" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </GridLayout>
+
+            <TextView
+                android:id="@+id/tvQuickTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="58dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="빠른 실행"
+                android:textColor="#4B626A"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
+            <GridLayout
+                android:id="@+id/quickGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="34dp"
                 android:columnCount="3"
                 android:rowCount="2">
 
-                <!-- 환경 버튼 -->
-                <LinearLayout android:id="@+id/btn_environment" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:gravity="center" android:orientation="vertical" android:layout_marginBottom="24dp" android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackground">
-                    <androidx.cardview.widget.CardView android:layout_width="60dp" android:layout_height="60dp" app:cardCornerRadius="18dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF">
-                        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_gravity="center" android:src="@drawable/environment" android:importantForAccessibility="no" />
-                    </androidx.cardview.widget.CardView>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="환경" android:textColor="#1F2246" android:textSize="12sp" android:textStyle="bold" />
+                <LinearLayout
+                    android:id="@+id/btn_environment"
+                    style="@style/HomeQuickActionStyle">
+                    <FrameLayout style="@style/HomeQuickIconCircleStyle">
+                        <ImageView style="@style/HomeQuickIconStyle" android:src="@drawable/environment" />
+                    </FrameLayout>
+                    <TextView style="@style/HomeQuickLabelStyle" android:text="환경" />
                 </LinearLayout>
 
-                <!-- 카메라 버튼 -->
-                <LinearLayout android:id="@+id/btn_camera" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackground">
-                    <androidx.cardview.widget.CardView android:layout_width="60dp" android:layout_height="60dp" app:cardCornerRadius="18dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF">
-                        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_gravity="center" android:src="@drawable/camera" android:importantForAccessibility="no" />
-                    </androidx.cardview.widget.CardView>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="카메라" android:textColor="#1F2246" android:textSize="12sp" android:textStyle="bold" />
+                <LinearLayout
+                    android:id="@+id/btn_camera"
+                    style="@style/HomeQuickActionStyle">
+                    <FrameLayout style="@style/HomeQuickIconCircleStyle">
+                        <ImageView style="@style/HomeQuickIconStyle" android:src="@drawable/camera" />
+                    </FrameLayout>
+                    <TextView style="@style/HomeQuickLabelStyle" android:text="카메라" />
                 </LinearLayout>
 
-                <!-- 일정 버튼 -->
-                <LinearLayout android:id="@+id/btn_schedule" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackground">
-                    <androidx.cardview.widget.CardView android:layout_width="60dp" android:layout_height="60dp" app:cardCornerRadius="18dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF">
-                        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_gravity="center" android:src="@drawable/schedule" android:importantForAccessibility="no" />
-                    </androidx.cardview.widget.CardView>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="일정" android:textColor="#1F2246" android:textSize="12sp" android:textStyle="bold" />
+                <LinearLayout
+                    android:id="@+id/btn_schedule"
+                    style="@style/HomeQuickActionStyle">
+                    <FrameLayout style="@style/HomeQuickIconCircleStyle">
+                        <ImageView style="@style/HomeQuickIconStyle" android:src="@drawable/schedule" />
+                    </FrameLayout>
+                    <TextView style="@style/HomeQuickLabelStyle" android:text="일정" />
                 </LinearLayout>
 
-                <!-- 그래프 버튼 -->
-                <LinearLayout android:id="@+id/btn_graph" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackground">
-                    <androidx.cardview.widget.CardView android:layout_width="60dp" android:layout_height="60dp" app:cardCornerRadius="18dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF">
-                        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_gravity="center" android:src="@drawable/grape" android:importantForAccessibility="no" />
-                    </androidx.cardview.widget.CardView>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="그래프" android:textColor="#1F2246" android:textSize="12sp" android:textStyle="bold" />
+                <LinearLayout
+                    android:id="@+id/btn_graph"
+                    style="@style/HomeQuickActionStyle">
+                    <FrameLayout style="@style/HomeQuickIconCircleStyle">
+                        <ImageView style="@style/HomeQuickIconStyle" android:src="@drawable/grape" />
+                    </FrameLayout>
+                    <TextView style="@style/HomeQuickLabelStyle" android:text="그래프" />
                 </LinearLayout>
 
-                <!-- 리포트 버튼 -->
-                <LinearLayout android:id="@+id/btn_report" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackground">
-                    <androidx.cardview.widget.CardView android:layout_width="60dp" android:layout_height="60dp" app:cardCornerRadius="18dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF">
-                        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_gravity="center" android:src="@drawable/report" android:importantForAccessibility="no" />
-                    </androidx.cardview.widget.CardView>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="리포트" android:textColor="#1F2246" android:textSize="12sp" android:textStyle="bold" />
+                <LinearLayout
+                    android:id="@+id/btn_report"
+                    style="@style/HomeQuickActionStyle">
+                    <FrameLayout style="@style/HomeQuickIconCircleStyle">
+                        <ImageView style="@style/HomeQuickIconStyle" android:src="@drawable/report" />
+                    </FrameLayout>
+                    <TextView style="@style/HomeQuickLabelStyle" android:text="리포트" />
                 </LinearLayout>
 
-                <!-- 정책 버튼 -->
-                <LinearLayout android:id="@+id/btn_policy" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_columnWeight="1" android:gravity="center" android:orientation="vertical" android:clickable="true" android:focusable="true" android:background="?attr/selectableItemBackground">
-                    <androidx.cardview.widget.CardView android:layout_width="60dp" android:layout_height="60dp" app:cardCornerRadius="18dp" app:cardElevation="0dp" app:cardBackgroundColor="#FFFFFF">
-                        <ImageView android:layout_width="32dp" android:layout_height="32dp" android:layout_gravity="center" android:src="@drawable/policy" android:importantForAccessibility="no" />
-                    </androidx.cardview.widget.CardView>
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp" android:text="정책" android:textColor="#1F2246" android:textSize="12sp" android:textStyle="bold" />
+                <LinearLayout
+                    android:id="@+id/btn_policy"
+                    style="@style/HomeQuickActionStyle">
+                    <FrameLayout style="@style/HomeQuickIconCircleStyle">
+                        <ImageView style="@style/HomeQuickIconStyle" android:src="@drawable/policy" />
+                    </FrameLayout>
+                    <TextView style="@style/HomeQuickLabelStyle" android:text="정책" />
                 </LinearLayout>
             </GridLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardVaccineSchedule"
+                android:layout_width="match_parent"
+                android:layout_height="104dp"
+                android:layout_marginTop="46dp"
+                android:background="@drawable/bg_home_vaccine_card"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp">
+
+                <FrameLayout
+                    android:id="@+id/vaccineIconCircle"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
+                    android:background="@drawable/bg_home_vaccine_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/syringe"
+                        android:tint="#795D43" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tvVaccineTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="12dp"
+                    android:text="예방접종 예정"
+                    android:textColor="#795D43"
+                    android:textSize="23sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@id/tvVaccineSubtitle"
+                    app:layout_constraintEnd_toStartOf="@id/tvVaccineArrow"
+                    app:layout_constraintStart_toEndOf="@id/vaccineIconCircle"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed" />
+
+                <TextView
+                    android:id="@+id/tvVaccineSubtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="12dp"
+                    android:text="2일 후 보건소 예약"
+                    android:textColor="#795D43"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/tvVaccineArrow"
+                    app:layout_constraintStart_toEndOf="@id/vaccineIconCircle"
+                    app:layout_constraintTop_toBottomOf="@id/tvVaccineTitle" />
+
+                <TextView
+                    android:id="@+id/tvVaccineArrow"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:gravity="center"
+                    android:text="›"
+                    android:textColor="#B88F68"
+                    android:textSize="38sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <org.videolan.libvlc.util.VLCVideoLayout
+                android:id="@+id/mainPreview"
+                android:layout_width="1dp"
+                android:layout_height="1dp"
+                android:alpha="0"
+                android:importantForAccessibility="no" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:background="@drawable/bg_home_bottom_nav"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/navHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:background="@drawable/bg_home_nav_selected"
+                android:gravity="center"
+                android:text="⌂\n홈"
+                android:textColor="#795D43"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navSleep"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="☾\n수면"
+                android:textColor="#181C20"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navSchedule"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="▣\n일정"
+                android:textColor="#181C20"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/navPolicy"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="⌾\n정책"
+                android:textColor="#181C20"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
